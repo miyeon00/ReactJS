@@ -19,25 +19,27 @@ function Square(props) {
         />
       );
     }
+    // purpose : Rewrite Board to use two loops to make the squares instead of hardcoding them.
+    renderBoard(size){
+      const board = [];
+      for(let i=0;i<size;i++){
+        let row =[];
+        for(let j=0;j<size;j++){
+          row.push(this.renderSquare(i*size + j));
+        }
+        board.push(
+          <div key={i} className="board-row">
+            {row}
+          </div>
+        )
+      }
+      return board;
+    }
   
     render() {
       return (
         <div>
-          <div className="board-row">
-            {this.renderSquare(0)}
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(3)}
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(6)}
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
-          </div>
+          {this.renderBoard(3)}
         </div>
       );
     }
